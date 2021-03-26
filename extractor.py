@@ -10,7 +10,7 @@ from nltk.tokenize import word_tokenize
 stopwords=set(stopwords.words('english'))
 
 
-url = ""
+url = "https://www.thehometeam.ae"
 
 pTagList = []
 
@@ -44,7 +44,6 @@ def hTagExtraction(url):
             head += 1
 
 
-
 def pTagExtraction(url):
     """
     <p> text extraction
@@ -67,7 +66,13 @@ def pTagExtraction(url):
             #print("Paragraph " + str(paraCount) + " " + tag.text)
             pTagList.append(tag.text.lower())
 
-    
+    word_count=0
+    for i in pTagList:
+        for word in i:
+            word_count+=1
+    return(word_count)
+
+
 
 
 def remove_stopwords(pTagList):
@@ -82,6 +87,11 @@ def remove_stopwords(pTagList):
             if word.lower() not in stopwords:
                 temp_list.append(word)
         output_array.append(' '.join(temp_list))
-    return output_array
 
+    word_count = 0
+    for i in output_array:
+        for x in i:
+            word_count+=1
+    return(word_count)
 
+print("Amount of stopwords removed:", pTagExtraction(url) - remove_stopwords(pTagList))

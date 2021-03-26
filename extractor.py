@@ -1,10 +1,7 @@
-import time
 import requests
 import re
 from bs4 import BeautifulSoup
-import nltk
 from nltk.corpus import stopwords  
-from nltk.tokenize import word_tokenize 
 
 
 stopwords=set(stopwords.words('english'))
@@ -73,8 +70,6 @@ def pTagExtraction(url):
     return(word_count)
 
 
-
-
 def remove_stopwords(pTagList):
     """
     remove stopwords
@@ -94,4 +89,11 @@ def remove_stopwords(pTagList):
             word_count+=1
     return(word_count)
 
-print("Amount of stopwords removed:", pTagExtraction(url) - remove_stopwords(pTagList))
+def stopWordCount():
+    """
+    Prints the number of stopwords in a file
+    """
+    
+    print("Number of stopwords removed:", pTagExtraction(url) - remove_stopwords(pTagList))
+
+stopWordCount()
